@@ -26,3 +26,18 @@ func (c *Cache) add(key string, value ByteView) {
 	c.lru.Add(key, value)
 
 }
+
+func (c *Cache) get(key string) (value ByteView, ok bool) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if c.lru == nil {
+		return
+	}
+
+	if v, ok := c.lru.Get(key); ok {
+		// 转换为ByteView
+		return v.(ByteView), ok
+	}
+
+	return
+}

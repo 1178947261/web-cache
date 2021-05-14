@@ -2,6 +2,8 @@ package test
 
 import (
 	"fmt"
+	geecache "geecahe"
+	"reflect"
 	"sync"
 	"testing"
 	"time"
@@ -26,4 +28,14 @@ func TestGet(t *testing.T) {
 		go printOnce(100)
 	}
 	time.Sleep(time.Second)
+}
+func TestGetter(t *testing.T) {
+	var f geecache.Getter = geecache.GetterFunc(func(key string) ([]byte, error) {
+		return []byte(key), nil
+	})
+
+	expect := []byte("key")
+	if v, _ := f.Get("key"); !reflect.DeepEqual(v, expect) {
+		t.Errorf("callback failed")
+	}
 }
