@@ -6,12 +6,14 @@ ByteView 只有一个数据成员，b []byte，b 将会存储真实的缓存值�
 b 是只读的，使用 ByteSlice() 方法返回一个拷贝，防止缓存值被外部程序修改。
 */
 
+// 这个结构体实现value 接口
+
 type ByteView struct {
 	b []byte
 }
 
 // Len 返回其所占的内存大小。
-func (b ByteView) len() int {
+func (b ByteView) Len() int {
 	return len(b.b)
 
 }

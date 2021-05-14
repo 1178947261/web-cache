@@ -19,6 +19,8 @@ type entry struct {
 	value Value
 }
 
+// 这是接口类型
+
 type Value interface {
 	Len() int
 }
