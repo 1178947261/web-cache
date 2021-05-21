@@ -36,13 +36,27 @@ func New(maxBytes int64, OnEvent func(string, Value)) *Cache {
 }
 
 // Get 查找键的值
+//func (c *Cache) Get(key string) (value Value, ok bool) {
+//	// 我们先从缓存key-value 中取出value
+//	element, ok := c.cache[key]
+//	// 如果对应的连接节点存在，那我们就将节点移动到队尾部，并且返回查找的值
+//	//  移动到队尾（双向链表作为队列，队首队尾是相对的，在这里约定 front 为队尾）;
+//	if ok {
+//		c.doubleList.MoveToFront(element)
+//	}
+//	return
+//
+//
+//}
 func (c *Cache) Get(key string) (value Value, ok bool) {
+
 	// 我们先从缓存key-value 中取出value
-	element, ok := c.cache[key]
-	// 如果对应的连接节点存在，那我们就将节点移动到队尾部，并且返回查找的值
-	//  移动到队尾（双向链表作为队列，队首队尾是相对的，在这里约定 front 为队尾）;
-	if ok {
-		c.doubleList.MoveToFront(element)
+	if ele, ok := c.cache[key]; ok {
+		// 如果对应的连接节点存在，那我们就将节点移动到队尾部，并且返回查找的值
+		//  移动到队尾（双向链表作为队列，队首队尾是相对的，在这里约定 front 为队尾）;
+		c.doubleList.MoveToFront(ele)
+		kv := ele.Value.(*entry)
+		return kv.value, true
 	}
 	return
 }

@@ -6,7 +6,7 @@ ByteView 只有一个数据成员，b []byte，b 将会存储真实的缓存值�
 b 是只读的，使用 ByteSlice() 方法返回一个拷贝，防止缓存值被外部程序修改。
 */
 
-// 这个结构体实现value 接口
+// 这个结构体实现value 接口  只是自己实现的一个数据类型
 
 type ByteView struct {
 	b []byte
