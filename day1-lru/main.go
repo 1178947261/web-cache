@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -34,4 +35,7 @@ func main() {
 	//如果n为0，则返回nil；如果n小于0，则不限制切分个数，全部切分
 	index := strings.SplitN(s, " ", 2)
 	fmt.Println(index) //2
+
+	fmt.Println(strconv.Itoa(1) + "2")
+	println(int(1))
 }
