@@ -1,5 +1,6 @@
 package lru
 
+// lru 缓存淘汰策略
 import "container/list"
 
 //Cache 是LRU Cache。并发访问是不安全的。
